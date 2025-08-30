@@ -1,11 +1,11 @@
 # CppTrace
 
 <p>
-    <img src="https://img.shields.io/github/v/release/fentaniao/CppTrace?&color=blue&logo=hack-the-box)" />
+    <img src="https://img.shields.io/github/v/release/ruiyangzhou01/CppTrace?&color=blue&logo=hack-the-box)" />
     <img alt="C++" src="https://img.shields.io/badge/-C++-9f62a5?style=flat&logo=cplusplus&logoColor=white" />
 </p>
 
-[English Readme](https://github.com/Fentaniao/CppTrace/blob/main/README.md) | [中文自述文件](https://github.com/Fentaniao/CppTrace/blob/main/README_zh.md)
+[English Readme](https://github.com/ruiyangzhou01/CppTrace/blob/main/README.md) | [中文自述文件](https://github.com/ruiyangzhou01/CppTrace/blob/main/README_zh.md)
 
 一个用于跟踪 C++ 变量的日志库。
 
@@ -23,7 +23,7 @@
 
 ## 安装
 
-导航到[GitHub 发布页面](https://github.com/Fentaniao/CppTrace/releases)，单击底部的 `Assets` 以显示发行版中可用的文件，然后单击要下载的头文件。
+导航到[GitHub 发布页面](https://github.com/ruiyangzhou01/CppTrace/releases)，单击底部的 `Assets` 以显示发行版中可用的文件，然后单击要下载的头文件。
 
 最后，在您的项目中包含下载的头文件。
 
@@ -43,12 +43,6 @@ traceArr(varName, [a list including cycle variables], [a string of the descripti
 - 支持打印到文件的功能
 - 为二次开发提供 API 
 
-## 联系
-
-作者：Fentaniao
-
-邮箱：[Fentaniao@gmail.com](mailto:Fentaniao@gmail.com)
-
 ## 开源许可证
 
-[GPL-3.0 License](https://github.com/Fentaniao/MATLABUtilities/blob/main/LICENSE) © Fentaniao
+[GPL-3.0 License](https://github.com/ruiyangzhou01/MATLABUtilities/blob/main/LICENSE) © ruiyangzhou01
