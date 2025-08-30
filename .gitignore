@@ -1,6 +1,7 @@
 #Custom setting
 .idea
 cmake-build-debug
+build/
 
 # Prerequisites
 *.d

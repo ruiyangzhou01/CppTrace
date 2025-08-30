@@ -1,3 +1,0 @@
-/home/runner/work/CppTrace/CppTrace/build/CMakeFiles/CppTrace.dir
-/home/runner/work/CppTrace/CppTrace/build/CMakeFiles/edit_cache.dir
-/home/runner/work/CppTrace/CppTrace/build/CMakeFiles/rebuild_cache.dir

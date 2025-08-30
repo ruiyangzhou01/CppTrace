@@ -45,4 +45,4 @@ traceArr(varName, [a list including cycle variables], [a string of the descripti
 
 ## 开源许可证
 
-[GPL-3.0 License](https://github.com/ruiyangzhou01/MATLABUtilities/blob/main/LICENSE) © ruiyangzhou01
+[GPL-3.0 License](https://github.com/ruiyangzhou01/CppTrace/blob/main/LICENSE) © ruiyangzhou01
