@@ -6,7 +6,7 @@
  * <p>A C++ head file designs to trace variable
  * <hr />
  * <h2>Usage</h2>
- * <p>Copy this .h file to your project directory, and include <b><code>#include "PowerTrace.h"</code></b> in your target .cpp file.
+ * <p>Copy this .h file to your project directory, and include <b><code>#include "CppTrace.h"</code></b> in your target .cpp file.
  * <h2>Copyright</h2>
  * @author      ruiyangzhou01
  * @repository      https://github.com/ruiyangzhou01/CppTrace
