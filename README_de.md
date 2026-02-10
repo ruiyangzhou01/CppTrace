@@ -5,21 +5,30 @@
     <img alt="C++" src="https://img.shields.io/badge/-C++-9f62a5?style=flat&logo=cplusplus&logoColor=white" />
 </p>
 
-[English](https://github.com/ruiyangzhou01/CppTrace/blob/main/README.md) | [简体中文](https://github.com/ruiyangzhou01/CppTrace/blob/main/README_zh.md) | [Deutsch](https://github.com/ruiyangzhou01/CppTrace/blob/main/README_de.md) | [Español](https://github.com/ruiyangzhou01/CppTrace/blob/main/README_es.md) | [Français](https://github.com/ruiyangzhou01/CppTrace/blob/main/README_fr.md)
+[English](https://github.com/ruiyangzhou01/CppTrace/blob/main/README.md) | [简体中文](https://github.com/ruiyangzhou01/CppTrace/blob/main/README_zh.md) | [Deutsch](https://github.com/ruiyangzhou01/CppTrace/blob/main/README_de.md) | [Español](https://github.com/ruiyangzhou01/CppTrace/blob/main/README_es.md) | [Français](https://github.com/ruiyangzhou01/CppTrace/blob/main/README_fr.md) | [日本語](https://github.com/ruiyangzhou01/CppTrace/blob/main/README_ja.md)
 
-CppTrace ist eine schlanke Logging-Bibliothek zum Nachverfolgen von C++-Variablen.
+CppTrace ist ein Single-Header-C++14-Trace-Helfer, der Variableninformationen auf die Standardausgabe schreibt. Er besteht aus einer Header-Datei (`CppTrace.h`) und enthält Hilfsfunktionen zum Umleiten der Ausgabe in eine Logdatei.
 
 ## Features
 
-- Skalare Variablen in einer Datei verfolgen.
-- Array-Variablen in einer Datei verfolgen.
-- Variablen in Schleifen verfolgen (mit Schleifenzähler).
-- Beschreibungen zu Traces hinzufügen.
-- Die Ausgabe enthält Variablenname, Typ, Wert, Funktionsbereich, Trace-Zeilennummer, Schleifenindex und Beschreibung.
+- Single-Header-Bibliothek (nur `CppTrace.h`).
+- Skalare Variablen mit `trace` verfolgen.
+- Feste Arrays mit `traceArr` verfolgen.
+- Optionale Schleifenzähler für verschachtelte Schleifen (`std::list<int>`).
+- Optionale Beschreibungen pro Trace.
+- Ausgabe enthält Variablennamen, `typeid(...).name()`, Wert(e), Funktionsbereich, Zeilennummer, Schleifenindizes und Beschreibung.
+- Hilfsfunktionen zum Umleiten von `stdout` in eine Datei (`InRedirect2File`, `OutRedirect2File`).
 
 ### Screenshot
 
 ![screenshot](README.assets/screenshot.png)
+
+## Anforderungen und Einschränkungen
+
+- C++14-Compiler erforderlich.
+- Standardmäßig nur Windows, da `CppTrace.h` `<windows.h>` einbindet und `GetLocalTime` nutzt.
+- `traceArr` akzeptiert nur Arrays fester Größe (keine Pointer oder STL-Container). Die verwendete Länge wird durch Scannen nach `\0` ermittelt, daher sollten Arrays mit Nullen initialisiert oder nullterminiert sein.
+- Typnamen stammen von `typeid(...).name()` und sind compilerabhängig (nicht demangelt).
 
 ## Installation
 
@@ -27,21 +36,59 @@ CppTrace ist eine schlanke Logging-Bibliothek zum Nachverfolgen von C++-Variable
 2. Klappe `Assets` auf und lade die Header-Datei `CppTrace.h` herunter.
 3. Binde die Header-Datei in dein Projekt ein.
 
-## Verwendung
+## Demo bauen
 
-Die Bibliothek stellt zwei Haupt-APIs bereit:
+Das Repository enthält `main.cpp` als Beispiel. Unter Windows kannst du mit CMake bauen:
 
-```cpp
-trace(varName, [cycleVariables], [description]);
-traceArr(varName, [cycleVariables], [description]);
+```bash
+cmake -S . -B build
+cmake --build build
 ```
 
-Binde zuerst die Header-Datei mit `#include "CppTrace.h"` ein und rufe dann die beiden Funktionen in deinem Programm auf. Sie geben die Variableninformationen in der Konsole aus, einschließlich Variablenname, Typ, Wert, Funktionsbereich, Trace-Zeilennummer, Schleifenindex und Beschreibung.
+## Verwendung
 
-## Todo
+Header einbinden und die Trace-Makros verwenden:
 
-- Unterstützung für die Ausgabe in eine Datei
-- API bereitstellen, um die Weiterentwicklung zu erleichtern
+```cpp
+#include "CppTrace.h"
+
+int int_var = 3;
+int int_arr[60] = {2, 5, 4, 9};
+
+trace(int_var);
+trace(int_var, {1, 2});
+trace(int_var, {}, "This is the description");
+
+traceArr(int_arr);
+traceArr(int_arr, {1});
+traceArr(int_arr, {1, 2}, "This is the description");
+```
+
+Das optionale Argument `cycleVariables` ist eine `std::list<int>` (typischerweise Schleifenindizes). Für eine reine Beschreibung zuerst eine leere Liste (`{}`) übergeben.
+
+### Ausgabeformat
+
+Skalare Traces:
+
+```text
+TRACE [Var=int_var] [Type=i] [Value=3] [Fun=main, Line=16, Cycle=(1 2)] [Desc: This is the description]
+```
+
+Array-Traces:
+
+```text
+TRACE [Array=int_arr] [Type=i, Len=4/60] [Array={2, 5, 4, 9}] [Fun=main, Line=27]
+```
+
+## Ausgabe in eine Datei umleiten
+
+Beide Helfer nutzen `freopen`, um `stdout` umzuleiten. Das betrifft alle nachfolgenden Konsolenausgaben:
+
+```cpp
+OutRedirect2File("Time");    // Nutzt einen Zeitstempel wie "2026-02-10 13-05-02.log"
+OutRedirect2File("trace");   // Schreibt in "trace.log"
+InRedirect2File("main.in");  // Leitet stdout nach "main.in" um
+```
 
 ## Lizenz
 
