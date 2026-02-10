@@ -1,45 +1,47 @@
 # CppTrace
 
 <p>
-    <img src="https://img.shields.io/github/v/release/ruiyangzhou01/CppTrace?&color=blue&logo=hack-the-box)" />
+    <img src="https://img.shields.io/github/v/release/ruiyangzhou01/CppTrace?&color=blue&logo=hack-the-box" />
     <img alt="C++" src="https://img.shields.io/badge/-C++-9f62a5?style=flat&logo=cplusplus&logoColor=white" />
 </p>
 
-[English Readme](https://github.com/ruiyangzhou01/CppTrace/blob/main/README.md) | [中文自述文件](https://github.com/ruiyangzhou01/CppTrace/blob/main/README_zh.md)
+[English](https://github.com/ruiyangzhou01/CppTrace/blob/main/README.md) | [简体中文](https://github.com/ruiyangzhou01/CppTrace/blob/main/README_zh.md) | [Deutsch](https://github.com/ruiyangzhou01/CppTrace/blob/main/README_de.md) | [Español](https://github.com/ruiyangzhou01/CppTrace/blob/main/README_es.md) | [Français](https://github.com/ruiyangzhou01/CppTrace/blob/main/README_fr.md)
 
-A logging library to trace C++ variables.
+CppTrace is a lightweight logging library for tracing C++ variables.
 
 ## Features
 
-- Trace simple variable among the file.
-- Trace array variable among the file.
-- Trace variable in the cycle.
-- Add description with variable.
-- Information including variable name, variable type, value, function container, the line of the trace code, cycle number, and the description.
+- Trace scalar variables in a file.
+- Trace array variables in a file.
+- Trace variables inside loops (with cycle counters).
+- Attach descriptions to traces.
+- Output includes the variable name, type, value, function scope, trace line number, cycle index, and description.
 
 ### Screenshot
 
-![screenshoot](README.assets/screenshot.png)
+![screenshot](README.assets/screenshot.png)
 
 ## Install
 
-[GitHub releases page](https://github.com/ruiyangzhou01/CppTrace/releases), click on `Assets` at the bottom to show the files available in the release and then click on the head file you want to download. Finally, include the head file in your project.
+1. Go to the [GitHub releases page](https://github.com/ruiyangzhou01/CppTrace/releases).
+2. Expand `Assets` and download the `CppTrace.h` header file.
+3. Include the header file in your project.
 
 ## Usage
 
-The library now has two main API:
+The library provides two main APIs:
 
-```
-trace(varName, [a list including cycle variables], [a string of the description])
-traceArr(varName, [a list including cycle variables], [a string of the description])
+```cpp
+trace(varName, [cycleVariables], [description]);
+traceArr(varName, [cycleVariables], [description]);
 ```
 
-First include the head file in your project by `#include "CppTrace.h"`, and then call the two function in the program, it can print the variable's information to command window, including variable name, variable type, value, function container, the line of the trace code, cycle number, and the description.
+First include the header file in your project with `#include "CppTrace.h"`, then call the two functions in your program. They print the variable information to the console, including the variable name, type, value, function scope, trace line number, cycle index, and description.
 
 ## Todo
 
-- Support function that can print to file
-- Provide API for develop secondary easier
+- Support output to a file
+- Provide APIs to simplify secondary development
 
 ## License
 
